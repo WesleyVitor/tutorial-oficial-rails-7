@@ -1,0 +1,27 @@
+<% unless article.comments.empty? %>
+    <% article.comments.each do |comment|%>
+        <% unless comment.archived?%>
+            <p>
+                <strong>Commenter:</strong>
+                <%= comment.commenter %>
+            </p>
+
+            <p>
+                <strong>Body:</strong>
+                <%= comment.body %>
+            </p>
+            <p>
+                <%= link_to 'Destroy Comment', [comment.article, comment ], data:{
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"        
+                }%>
+            </p>
+            <hr>
+        <%end%>
+    <%end%>
+
+<%else%>
+    
+    <p>Do not exists comments created</p>
+
+<%end%>

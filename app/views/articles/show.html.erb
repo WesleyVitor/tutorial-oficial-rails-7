@@ -1,0 +1,22 @@
+<p><%= @article.title %></p>
+<p><%= @article.body %></p>
+ <p><% @article.errors.full_messages.each do |message|%>
+            <div style="color:red"><%= message%></div>
+        <%end%></p>
+<ul>
+<li> <%=link_to "Edit Article", edit_article_path(@article)%></li>
+<li>
+    <%=link_to "Delete Article", article_path(@article), data:{
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+    }%>
+</li>
+<li><%=link_to "All Articles", articles_path%></li>
+</ul>
+
+<h2>Comments</h2>
+<%= render "comments/comment", article: @article%>
+
+<h2>Add Comments</h2>
+
+<%= render "comments/form", article: @article%>
